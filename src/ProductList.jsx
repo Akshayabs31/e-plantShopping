@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'; // Import useDispatch from React-Redux
 import './ProductList.css';
+import { addItem } from './cartSlice'; // Import the addItem action from the Cart slice
 import CartItem from './CartItem';
 
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false);
+    const dispatch = useDispatch(); // Initialize dispatch to dispatch actions
 
     const plantsArray = [
         {
@@ -136,6 +139,11 @@ function ProductList({ onHomeClick }) {
         setShowCart(false);
     };
 
+    // Handle adding items to the cart
+    const handleAddToCart = (plant) => {
+        dispatch(addItem(plant)); // Dispatch the action with plant details
+    };
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -168,7 +176,7 @@ function ProductList({ onHomeClick }) {
                                         <h3>{plant.name}</h3>
                                         <p>{plant.description}</p>
                                         <p><strong>{plant.cost}</strong></p>
-                                        <button>Add to Cart</button>
+                                        <button onClick={() => handleAddToCart(plant)}>Add to Cart</button> {/* Add to Cart button now dispatches action */}
                                     </div>
                                 ))}
                             </div>
