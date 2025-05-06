@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'; // Import useDispatch from React-Redux
 import './ProductList.css';
-import { addItem } from './cartSlice'; // Import the addItem action from the Cart slice
+import { addItem } from './CartSlice'; // Import the addItem action from the Cart slice
 import CartItem from './CartItem';
 
 function ProductList({ onHomeClick }) {
